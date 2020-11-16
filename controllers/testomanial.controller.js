@@ -2,12 +2,12 @@ const Testomaniel = require('../models/testomonial.model')
 
 module.exports.addTestomaniel = async (req, res) => {
   const description = req.body.desc
-  const image = req.file.path
+  const addedBy = req.body.name
 
   try {
     let test = new Testomaniel({
       description: description,
-      image: image,
+      name: addedBy,
     })
     let result = await test.save()
     res.status(200).json({
@@ -32,15 +32,10 @@ module.exports.getAllTestomaniel = async (req, res) => {
 
 module.exports.updateTestomaniel = async (req, res) => {
   let dataToUpdate = {}
-  if (req.file.path != undefined) {
-    dataToUpdate = {
-      description: req.body.description,
-      image: req.body.description,
-    }
-  } else {
-    dataToUpdate = {
-      description: req.body.description,
-    }
+
+  dataToUpdate = {
+    description: req.body.description,
+    name: req.body.name,
   }
   const id = req.params.id
   try {

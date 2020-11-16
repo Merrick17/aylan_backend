@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const TestomanialSchema = new mongoose.Schema(
   {
     description: String,
-    image: String,
+    name: String,
   },
   { timestamps: true },
 )
