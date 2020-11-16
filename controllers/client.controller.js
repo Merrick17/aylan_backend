@@ -9,7 +9,7 @@ module.exports.addClient = async (req, res) => {
     })
     let result = await newClient.save()
     return res.json({
-      msg: 'Offre Added',
+      msg: 'Client Added',
     })
   } catch (ex) {
     console.error(ex)
