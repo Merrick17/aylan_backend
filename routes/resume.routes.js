@@ -16,7 +16,6 @@ const upload = multer({ storage: storage })
 router.get('/', ResumeController.getAllResumes)
 router.post(
   '/create',
-  verifToken,
   upload.single('resume'),
   ResumeController.addResume,
 )

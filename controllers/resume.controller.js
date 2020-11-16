@@ -13,7 +13,7 @@ module.exports.addResume = async (req, res) => {
     })
     let result = await newResume.save()
     return res.json({
-      msg: 'Offre Added',
+      msg: 'Resume Added',
     })
   } catch (ex) {
     console.error(ex)
@@ -23,7 +23,7 @@ module.exports.addResume = async (req, res) => {
 
 module.exports.getAllResumes = async (req, res) => {
   try {
-    let result = await Resume.find()
+    let result = await Resume.find().populate('offer')
     return res.status(200).json({ Resumes: result })
   } catch (ex) {
     res.json({ err: ex })
