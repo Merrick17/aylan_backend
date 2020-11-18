@@ -4,7 +4,7 @@ module.exports.addResume = async (req, res) => {
   console.log(req.body)
   try {
     let newResume = new Resume({
-      name: req.body.name,
+      lastName: req.body.lastName,
       firstName: req.body.firstName,
       resume: req.file.path,
       phone: req.body.phone,
@@ -16,7 +16,6 @@ module.exports.addResume = async (req, res) => {
       msg: 'Resume Added',
     })
   } catch (ex) {
-    console.error(ex)
     return res.json({ err: ex })
   }
 }
@@ -44,7 +43,10 @@ module.exports.updateResume = async (req, res) => {
   console.log('My Resume', id)
   try {
     const dataToUpdate = req.body
-    const { ...updateData } = dataToUpdate
+    let { ...updateData } = dataToUpdate;
+    if (req.file) {
+      updateData = { ...updateData, resume: req.file.path };
+    }
     const updateUser = await Resume.findByIdAndUpdate(id, updateData, {
       new: true,
     })

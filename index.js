@@ -23,6 +23,8 @@ const serviceRoutes = require('./routes/service.routes')
 const testomanialRoutes = require('./routes/testamoniel.routes')
 const expertRoute = require('./routes/expert.routes')
 const resumeRoute = require('./routes/resume.routes')
+const messageRoute = require('./routes/message.routes')
+const newsRoute = require('./routes/news.routes')
 // Setup static files path
 app.use('/uploads', express.static(path.join(__dirname + '/uploads')))
 app.use(cors())
@@ -53,7 +55,8 @@ app.use('/service', serviceRoutes)
 app.use('/testomanial', testomanialRoutes)
 app.use('/expert', expertRoute)
 app.use('/resume', resumeRoute)
-
+app.use('/message', messageRoute)
+app.use('/news', newsRoute)
 app.listen(3000, () => {
   console.log('app is running')
 })

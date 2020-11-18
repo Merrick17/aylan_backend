@@ -39,14 +39,17 @@ module.exports.deleteOffer = async (req, res) => {
 
 module.exports.updateOffer = async (req, res) => {
   const id = req.params.id
-  console.log('My Offer', id)
   try {
     const dataToUpdate = req.body
-    const { ...updateData } = dataToUpdate
-    const updateUser = await Offer.findByIdAndUpdate(id, updateData, {
+    let { ...updateData } = dataToUpdate;
+    if (req.file) {
+      updateData = { ...updateData, image: req.file.path };
+    }
+    const updatedOffer = await Offer.findByIdAndUpdate(id, updateData, {
       new: true,
     })
-    return res.status(200).json(updateUser)
+
+    return res.status(200).json(updatedOffer)
   } catch (ex) {
     res.json({ err: ex })
   }

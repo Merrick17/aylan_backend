@@ -4,7 +4,7 @@ module.exports.addService = async (req, res) => {
   try {
     let newService = Service({
       title: req.body.title,
-      description: req.body.desc,
+      description: req.body.description,
     });
     let result = await newService.save();
     return res.status(200).json({

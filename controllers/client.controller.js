@@ -40,7 +40,10 @@ module.exports.updateClient = async (req, res) => {
   console.log('My Client', id)
   try {
     const dataToUpdate = req.body
-    const { ...updateData } = dataToUpdate
+    let { ...updateData } = dataToUpdate;
+    if (req.file) {
+      updateData = { ...updateData, clientLogo: req.file.path };
+    }
     const updateUser = await Client.findByIdAndUpdate(id, updateData, {
       new: true,
     })
