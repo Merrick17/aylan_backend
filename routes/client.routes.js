@@ -31,4 +31,4 @@ router.put(
   clientController.updateClient,
 )
 
-module.exports = router
+module.exports = router;

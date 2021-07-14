@@ -26,7 +26,7 @@ const resumeRoute = require('./routes/resume.routes')
 const messageRoute = require('./routes/message.routes')
 const newsRoute = require('./routes/news.routes')
 // Setup static files path
-app.use('/uploads', express.static(path.join(__dirname + '/uploads')))
+app.use('/api/uploads', express.static(path.join(__dirname + '/uploads')))
 app.use(cors())
 // Use body parser middleware to parse body of incoming requests
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -48,15 +48,15 @@ app.use((req, res, next) => {
 
 // routes middleware
 
-app.use('/user', userRoutes)
-app.use('/offre', offreRoutes)
-app.use('/client', clientRoutes)
-app.use('/service', serviceRoutes)
-app.use('/testomanial', testomanialRoutes)
-app.use('/expert', expertRoute)
-app.use('/resume', resumeRoute)
-app.use('/message', messageRoute)
-app.use('/news', newsRoute)
+app.use('/api/user', userRoutes)
+app.use('/api/offre', offreRoutes)
+app.use('/api/client', clientRoutes)
+app.use('/api/service', serviceRoutes)
+app.use('/api/testomanial', testomanialRoutes)
+app.use('/api/expert', expertRoute)
+app.use('/api/resume', resumeRoute)
+app.use('/api/message', messageRoute)
+app.use('/api/news', newsRoute)
 app.listen(3000, () => {
   console.log('app is running')
 })
